@@ -1,0 +1,116 @@
+# Email Categorization Rules
+# Edit this file to customize how your emails are categorized and organized
+# The AI will read these rules and apply them to your Gmail inbox
+
+# HIGH PRIORITY - Needs Attention
+# These emails will be labeled "NeedsAttention" and kept in inbox
+high_priority:
+  # Specific email addresses or domains that are always important
+  senders:
+    - "important@test.com"
+    # You can use wildcards: "*@vip-domain.com"
+
+  # Subject or body keywords that indicate importance
+  keywords:
+    - "verification code"
+    - "SMS code"
+    - "OTP"
+    - "action required"
+    - "urgent"
+    - "ASAP"
+    - "payment due"
+    - "invoice"
+    - "bill"
+    - "expires today"
+    - "deadline"
+    - "簽證"
+
+  # Special conditions - IMPLEMENTED
+  conditions:
+    - is_reply_to_me        # Email is a reply in a thread you participated in
+    - is_marked_important   # Email is marked as important by Gmail
+
+# MEDIUM PRIORITY - FYI
+# These emails will be labeled "FYI" and kept in inbox
+medium_priority:
+  senders:
+    - "medium_sender@test.com"
+
+  keywords:
+    - "update"
+    - "announcement"
+    - "report"
+    - "recap"
+    - "summary"
+    - "job"
+
+  conditions:
+    # You are CC'd (not primary recipient) - IMPLEMENTED
+    - is_cc_recipient
+
+# LOW PRIORITY - Archive from Inbox
+# These emails will be labeled "LowPriority" and archived (removed from inbox)
+low_priority:
+  # Bank and credit card promotions
+  senders:
+    - "*@amex.com"
+    - "*@chase.com"
+    - "*@bankofamerica.com"
+    - "*@citi.com"
+    - "noreply@*"
+    - "no-reply@*"
+    - "marketing@*"
+
+  keywords:
+    - "promotion"
+    - "special offer"
+    - "limited time"
+    - "sale"
+    - "discount"
+
+  # Use Gmail's automatic categorization
+  categories:
+    - promotions
+    - social
+
+  conditions:
+    # Emails from senders you rarely open - IMPLEMENTED
+    - rarely_opened_sender
+
+# ACTIONS TO TAKE
+# What happens to emails in each category
+actions:
+  high_priority:
+    label: "⭐ NeedsAttention"
+    keep_in_inbox: true
+    mark_important: true
+    star: false
+
+  medium_priority:
+    label: "📋 FYI"
+    keep_in_inbox: true
+    mark_important: false
+    star: false
+
+  low_priority:
+    label: "🔽 LowPriority"
+    keep_in_inbox: false  # Archive (remove from inbox)
+    mark_important: false
+    star: false
+
+# SETTINGS
+settings:
+  # How many days back to process emails
+  days_to_process: 7
+
+  # Use AI to analyze ambiguous emails
+  use_ai_analysis: true
+
+  # Threshold for "rarely opened" (in percentage, 0-100)
+  rarely_opened_threshold: 20
+
+  # Only process unread emails
+  only_unread: false
+
+  # Dry run mode - show what would happen without making changes
+  dry_run: false

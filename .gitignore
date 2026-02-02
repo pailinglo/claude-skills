@@ -1,0 +1,55 @@
+# ===================
+# Credentials & Tokens - NEVER commit these!
+# ===================
+credentials.json
+token.pickle
+*.pickle
+client_secret*.json
+*.pem
+*.key
+
+# ===================
+# Personal Data
+# ===================
+sender_metrics.json
+
+# ===================
+# Log Files
+# ===================
+*.log
+
+# ===================
+# Backup & Temp Files
+# ===================
+*.bak
+*.tmp
+*~
+
+# ===================
+# macOS
+# ===================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ===================
+# Python
+# ===================
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.env
+.venv/
+venv/
+ENV/
+
+# ===================
+# IDE & Editors
+# ===================
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-*
